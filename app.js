@@ -7,6 +7,11 @@ import notes from './notes.js';
 // console.log(chalk.blue('Success!'));
 // yargs.version('1.1.0')
 
+
+// edit looks for a certain title and edits the body based on the user input
+// note with a title provided
+// update body
+// cyan background
 yargs(hideBin(process.argv))
     .command( {
         command: 'add',
@@ -27,6 +32,25 @@ yargs(hideBin(process.argv))
             notes.addNote(argv.title, argv.body)
     }
 })
+    .command({
+        command: 'edit',
+        describe: 'Edit a note',
+        builder: {
+            title: {
+                describe: "Note title that you'd like to change",
+                demandOption: true,
+                type: 'string'
+            },
+            body: {
+                describe: 'New body',
+                demandOption: true,
+                type: 'string'
+            }
+        },
+        handler: function (argv) {
+            notes.editNote(argv.title, argv.body)
+        }
+    })
     .command({ 
         command: 'list',
         describe: 'List your notes',

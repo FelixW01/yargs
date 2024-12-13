@@ -74,11 +74,21 @@ const loadNotes = () => {
     }
 }
 
+const editNote = (title, body) => {
+    const dataJSON = JSON.stringify(body)
+    console.log(JSON.parse(dataJSON))
+    removeNote(title)
+    console.log(chalk.cyan.inverse('Note edited'))
+    addNote(title, body)
+}
+
+
 // es6 syntax for module exports
 export default {
     getNotes: getNotes,
     addNote: addNote,
     removeNote: removeNote,
     listNotes: listNotes,
-    readNote: readNote
+    readNote: readNote,
+    editNote: editNote
 }
